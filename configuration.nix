@@ -9,11 +9,11 @@
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
     ];
-
+  nixpkgs.config.allowUnfree = true;
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "quiet" "udev.log_priority=3" "acpi_osi=!" "acpi_osi='windows 2015'" ];
+  boot.kernelParams = [ "nouveau.modset=0" "quiet" "udev.log_priority=3" "acpi_osi=!" "acpi_osi='windows 2015'" ];
 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -59,7 +59,17 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.prime = {
+    sync.enable = true;
 
+    # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
+    nvidiaBusId = "PCI:1:0:0";
+
+    # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
+    intelBusId = "PCI:0:2:0";
+  };
   # Enable the Plasma 5 Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.windowManager.bspwm.enable = true;
@@ -96,6 +106,7 @@
      git
      stow
      zsh
+     neofetch
    ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -13,6 +13,7 @@
       enable = true;};
     alacritty = {
       enable = true;};
+    neofetch.enable = true;  
 
     zsh = {
 	enable = true;
