@@ -25,6 +25,7 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.networkmanager.enable=true;
+  programs.nm-applet.enable = true;
   nix.binaryCaches = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -61,11 +62,13 @@
 
   # Enable the Plasma 5 Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.windowManager.bspwm.enable = true;
+  services.xserver.desktopManager.lxqt.enable = true;
+  services.picom.enable = true;
   
 
  services.xserver.layout = "us";
- services.xserver.xkbOptions = "eurosign:e";
+ services.xserver.xkbOptions =  "eurosign:e,caps:swapescape" ;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -80,6 +83,7 @@
    users.users.waytrue= {
      isNormalUser = true;
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     shell = pkgs.zsh;
    };
 
   # List packages installed in system profile. To search, run:
@@ -90,6 +94,8 @@
      firefox
      neovim
      git
+     stow
+     zsh
    ];
 
   # Some programs need SUID wrappers, can be configured further or are

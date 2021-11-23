@@ -1,11 +1,11 @@
 __build_info:
   rime_version: 1.5.3
   timestamps:
-    default: 1610368368
-    default.custom: 1610368528
-    double_pinyin_flypy.custom: 1610366879
-    double_pinyin_flypy.schema: 1610370092
-    emoji_suggestion: 1610366879
+    default: 1637643415
+    default.custom: 1637643415
+    double_pinyin_flypy.custom: 1637643415
+    double_pinyin_flypy.schema: 1637643415
+    emoji_suggestion: 1637643415
     emoji_suggestion.custom: 0
     key_bindings: 1599578333
     key_bindings.custom: 0
